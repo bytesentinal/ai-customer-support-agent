@@ -1,7 +1,8 @@
-```markdown
 # AI Customer Support Agent
 
 A RAG-powered customer support chatbot that answers questions from your own documents. Built with FastAPI, LangChain, ChromaDB, and Groq.
+
+---
 
 ## Features
 
@@ -10,13 +11,23 @@ A RAG-powered customer support chatbot that answers questions from your own docu
 - 🔌 REST API with `/chat`, `/reset`, `/health` endpoints
 - 🐳 Fully Dockerized — runs anywhere
 
+---
+
 ## Tech Stack
 
-- **Python 3.13** · **FastAPI** · **LangChain** · **ChromaDB** · **Groq API** · **Docker**
+- Python 3.13
+- FastAPI
+- LangChain
+- ChromaDB
+- Groq API
+- Docker
+
+---
 
 ## Project Structure
 
-```
+```bash
+ai-support-agent/
 ├── app/
 │   ├── main.py       # FastAPI routes
 │   ├── agent.py      # RAG chain + Groq LLM
@@ -28,43 +39,81 @@ A RAG-powered customer support chatbot that answers questions from your own docu
 └── .env.example
 ```
 
+---
+
 ## Getting Started
 
-### 1. Clone & configure
+### 1. Clone & Configure
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/ai-support-agent.git
 cd ai-support-agent
 cp .env.example .env
-# Add your GROQ_API_KEY to .env
 ```
 
+Add your `GROQ_API_KEY` inside `.env`
+
+Example:
+
+```env
+GROQ_API_KEY=your_key_here
+```
+
+---
+
 ### 2. Run with Docker
+
 ```bash
 docker-compose up --build
 ```
 
-### 3. Ingest your documents
+---
+
+### 3. Ingest Your Documents
+
 ```bash
 docker-compose exec app python app/ingest.py
 ```
 
+---
+
 ### 4. Test the API
+
 ```bash
 curl -X POST http://localhost:8000/chat \
   -H "Content-Type: application/json" \
   -d '{"message": "What services do you offer?"}'
 ```
 
+---
+
 ## API Endpoints
 
-| Method | Endpoint  | Description              |
-|--------|-----------|--------------------------|
-| POST   | `/chat`   | Send a message           |
-| POST   | `/reset`  | Reset conversation       |
-| GET    | `/health` | Health check             |
+| Method | Endpoint  | Description        |
+| ------- | ---------- | ------------------ |
+| POST    | `/chat`    | Send a message     |
+| POST    | `/reset`   | Reset conversation |
+| GET     | `/health`  | Health check       |
+
+---
 
 ## Environment Variables
 
-```
+```env
 GROQ_API_KEY=your_key_here
 ```
+
+---
+
+## Run Locally Without Docker
+
+```bash
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+---
+
+## License
+
+MIT License
